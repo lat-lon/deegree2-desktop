@@ -1,0 +1,5 @@
+.. _anchor-installation:
+
+============
+Installation
+============
