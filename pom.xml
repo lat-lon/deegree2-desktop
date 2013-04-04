@@ -6,9 +6,9 @@
   <packaging>jar</packaging>
 
   <scm>
-    <connection>scm:svn:http://svn.wald.intevation.org/svn/deegree/deegree2/deegree2-igeodesktop/trunk</connection>
-    <developerConnection>scm:svn:svn+ssh://svn.wald.intevation.org/deegree/deegree2/deegree2-igeodesktop/trunk</developerConnection>
-    <url>http://svn.wald.intevation.org/svn/deegree/deegree2/deegree2-igeodesktop/trunk</url>
+    <connection>scm:git:git@github.com:lat-lon/deegree2-desktop.git</connection>
+    <developerConnection>scm:git:git@github.com:lat-lon/deegree2-desktop.git</developerConnection>
+    <url>https://github.com/lat-lon/deegree2-desktop.git</url>
   </scm>
 
   <parent>
@@ -31,20 +31,29 @@
       <name>deegree-restricted</name>
       <url>http://repo.deegree.org/content/repositories/private3rdparty/</url>
     </repository>
+    <repository>
+      <id>latlon-repo</id>
+      <url>http://artefacts.lat-lon/repo</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
   </repositories>
 
   <!-- remove distributionManagement on deegree2-base release 2.6-pre2 -->
   <distributionManagement>
     <repository>
-      <id>deegree-releases</id>
-      <url>http://repo.deegree.org/content/repositories/releases/</url>
+      <id>latlon-releases</id>
+      <url>http://artefacts.lat-lon/libs-release-local</url>
     </repository>
     <snapshotRepository>
-      <id>deegree-snapshots</id>
-      <url>http://repo.deegree.org/content/repositories/snapshots/</url>
+      <id>latlon-snapshots</id>
+      <url>http://artefacts.lat-lon/libs-snapshot-local</url>
     </snapshotRepository>
   </distributionManagement>
-
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,7 +84,6 @@
         <version>2.1</version>
         <configuration>
           <preparationGoals>clean install</preparationGoals>
-          <tagBase>svn+ssh://svn.wald.intevation.org/deegree/deegree2/deegree2-igeodesktop/tags</tagBase>
           <autoVersionSubmodules>true</autoVersionSubmodules>
           <arguments>-e</arguments>
         </configuration>
@@ -259,6 +267,9 @@
   <profiles>
     <profile>
       <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
@@ -334,9 +345,6 @@
           </plugin>
         </plugins>
       </build>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
     </profile>
     <profile>
       <id>report</id>
