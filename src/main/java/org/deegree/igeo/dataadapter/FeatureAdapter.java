@@ -211,7 +211,7 @@ public abstract class FeatureAdapter extends DataAccessAdapter {
      * 
      * @return name of first geometry property
      */
-    private PropertyName getGeomPropertyName() {
+    protected PropertyName getGeomPropertyName() {
         PropertyType[] pts = getSchema().getProperties();
 
         // Feature feat = featureCollections.get( datasource.getName() ).getFeature( 0 );
