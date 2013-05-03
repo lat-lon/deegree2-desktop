@@ -58,10 +58,9 @@ import org.deegree.framework.log.ILogger;
 import org.deegree.framework.log.LoggerFactory;
 import org.deegree.framework.util.ImageUtils;
 import org.deegree.framework.utils.MapTools;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.swing.util.GenericFileChooser;
-import org.deegree.igeo.views.swing.util.IGeoFileFilter;
 import org.deegree.igeo.views.swing.util.GenericFileChooser.FILECHOOSERTYPE;
+import org.deegree.igeo.views.swing.util.IGeoFileFilter;
 
 /**
  * Module for displaying and managing a legend assigned to layers contained in a mapmodel
@@ -74,17 +73,6 @@ import org.deegree.igeo.views.swing.util.GenericFileChooser.FILECHOOSERTYPE;
 public class LegendModule<T> extends DefaultModule<T> {
 
     private static final ILogger LOG = LoggerFactory.getLogger( LegendModule.class );
-
-    static {
-        ActionDescription ad1 = new ActionDescription( "exportAsImage",
-                                                       "enables exporting current legend as an image to a file", null,
-                                                       "export legend as image", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription( "exportToClipBoard",
-                                                       "copies current legend as a png image into clip board", null,
-                                                       "copy legend as image into clip board", ACTIONTYPE.PushButton,
-                                                       null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2 );
-    }
 
     /**
      * action handler function for exporting a legend as image

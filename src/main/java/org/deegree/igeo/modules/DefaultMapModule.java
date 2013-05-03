@@ -107,7 +107,6 @@ import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.LayerGroup;
 import org.deegree.igeo.mapmodel.MapModel;
 import org.deegree.igeo.mapmodel.MapModelVisitor;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.state.mapstate.HotlinkState;
 import org.deegree.igeo.state.mapstate.MapTool;
 import org.deegree.igeo.views.DialogFactory;
@@ -136,6 +135,7 @@ import org.deegree.model.spatialschema.Point;
  * belonging to a map - zoomIn, zoomOut, Pan, Center.
  * 
  * @author <a href="mailto:buesching@lat-lon.de">Lyn Buesching</a>
+ * 
  * @author last edited by: $Author$
  * 
  * @version $Revision$, $Date$
@@ -156,10 +156,6 @@ public class DefaultMapModule<T> extends DefaultModule<T> implements CommandProc
 
     private Container jco;
 
-    static {
-        initCapabilities();
-    }
-
     private static final Mapper<QualifiedName, QualifiedNameType> toqualifiedname = new Mapper<QualifiedName, QualifiedNameType>() {
         public QualifiedName apply( QualifiedNameType u ) {
             try {
@@ -171,68 +167,6 @@ public class DefaultMapModule<T> extends DefaultModule<T> implements CommandProc
         }
 
     };
-
-    private static void initCapabilities() {
-        ActionDescription ad1 = new ActionDescription(
-                                                       "center",
-                                                       "puts application into center mode; a click into current map will center map model on click point",
-                                                       null, "puts application into center mode",
-                                                       ACTIONTYPE.ToggleButton, null, null );
-        ActionDescription ad2 = new ActionDescription( "pan", "puts application into center mode", null,
-                                                       "puts application into center mode", ACTIONTYPE.ToggleButton,
-                                                       null, null );
-        ActionDescription ad3 = new ActionDescription( "zoomIn", "puts application into zoom in mode", null,
-                                                       "puts application into zoom in mode", ACTIONTYPE.ToggleButton,
-                                                       null, null );
-        ActionDescription ad4 = new ActionDescription( "zoomOut", "puts application into zoom out mode", null,
-                                                       "puts application into zoom out mode", ACTIONTYPE.ToggleButton,
-                                                       null, null );
-        ActionDescription ad5 = new ActionDescription( "zoomToFullExtent",
-                                                       "zoom to maximum extent as defined in current project", null,
-                                                       "zoom to maximum extent", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad6 = new ActionDescription( "zoomToSelectedFeatures", "zoom to extent of selected features",
-                                                       null, "zoom to extent of selected features",
-                                                       ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad7 = new ActionDescription( "zoomToSelectedLayers", "zoom to extent of selected layers",
-                                                       null, "zoom to extent of selected layers",
-                                                       ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad8 = new ActionDescription(
-                                                       "synchronizeMapModels",
-                                                       "sets extents of all map models to the extent of the selected one",
-                                                       null, "synchronizes extent of map models",
-                                                       ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad9 = new ActionDescription( "historyForward", "set extent to next one", null,
-                                                       "set extent to next one", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad10 = new ActionDescription( "historyBackward", "set extent to previous one", null,
-                                                        "set extent to previous one", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad11 = new ActionDescription( "objectInfo", "puts application into objectInfo state", null,
-                                                        "puts application into objectInfo state",
-                                                        ACTIONTYPE.ToggleButton, null, null );
-        ActionDescription ad12 = new ActionDescription(
-                                                        "exportLayer",
-                                                        "exports selected layer depending on contained datatypes as file",
-                                                        null, "exports selected layer", ACTIONTYPE.PushButton, null,
-                                                        null );
-        ActionDescription ad13 = new ActionDescription(
-                                                        "commitAll",
-                                                        "writes changes for all layers performed to geometries and/or properties into according backend",
-                                                        null, "commits all changes to backends", ACTIONTYPE.PushButton,
-                                                        null, null );
-        ActionDescription ad14 = new ActionDescription(
-                                                        "commitSelected",
-                                                        "writes changes for selected layer performed to geometries and/or properties into according backend",
-                                                        null, "commits changes for selected layer to backend",
-                                                        ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad15 = new ActionDescription( "exportAsImage", "exports current map as image into a file",
-                                                        null, "exports current map as image", ACTIONTYPE.PushButton,
-                                                        null, null );
-        ActionDescription ad16 = new ActionDescription( "exportToClipBoard",
-                                                        "copies current map as png image into clip board", null,
-                                                        "copies current map as image into clip board",
-                                                        ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2, ad3, ad4, ad5, ad6, ad7, ad8, ad9, ad10, ad11, ad12,
-                                                     ad13, ad14, ad15, ad16 );
-    }
 
     @Override
     public void init( ModuleType moduleType, _ComponentPositionType componentPosition, ApplicationContainer<T> appCont,

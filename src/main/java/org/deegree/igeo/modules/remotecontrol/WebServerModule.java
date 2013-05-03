@@ -54,12 +54,9 @@ import org.deegree.igeo.ApplicationContainer;
 import org.deegree.igeo.config.ModuleType;
 import org.deegree.igeo.config._ComponentPositionType;
 import org.deegree.igeo.i18n.Messages;
-import org.deegree.igeo.modules.ActionDescription;
 import org.deegree.igeo.modules.DefaultModule;
 import org.deegree.igeo.modules.IModule;
-import org.deegree.igeo.modules.ModuleCapabilities;
 import org.deegree.igeo.modules.ModuleException;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.DialogFactory;
 
 /**
@@ -83,15 +80,6 @@ public class WebServerModule<T> extends DefaultModule<T> {
     Map<String, Class<RequestHandler>> handler = new HashMap<String, Class<RequestHandler>>();
 
     Map<String, Map<String, String>> handlerParameters = new HashMap<String, Map<String, String>>();
-
-    static {
-        ActionDescription ad1 = new ActionDescription( "start", "starts internal server to enable remote control",
-                                                       null, "starts internal server", ACTIONTYPE.PushButton, null,
-                                                       null );
-        ActionDescription ad2 = new ActionDescription( "stop", "stops internal server to avoid remote control", null,
-                                                       "stops internal server", ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2 );
-    }
 
     @Override
     public void init( ModuleType moduleType, _ComponentPositionType componentPosition, ApplicationContainer<T> appCont,

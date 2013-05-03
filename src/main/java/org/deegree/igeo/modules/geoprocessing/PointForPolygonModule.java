@@ -39,10 +39,7 @@ import org.deegree.igeo.commands.geoprocessing.PointForPolygonCommand;
 import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription;
 import org.deegree.igeo.modules.DefaultModule;
-import org.deegree.igeo.modules.ModuleCapabilities;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.kernel.Command;
 import org.deegree.kernel.ProcessMonitor;
 import org.deegree.kernel.ProcessMonitorFactory;
@@ -58,15 +55,6 @@ import org.deegree.kernel.ProcessMonitorFactory;
  * 
  */
 public class PointForPolygonModule<T> extends DefaultModule<T> {
-
-    static {
-        ActionDescription ad1 = new ActionDescription(
-                                                       "calculate",
-                                                       "calculates a point for each polygon of a layer that will be located inside a polygon",
-                                                       null, "calculates representative points for polygons",
-                                                       ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1 );
-    }
 
     /**
      * action handler method

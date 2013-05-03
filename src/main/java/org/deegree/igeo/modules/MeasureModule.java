@@ -56,7 +56,6 @@ import org.deegree.igeo.ValueChangedEvent;
 import org.deegree.igeo.config.ModuleType;
 import org.deegree.igeo.config._ComponentPositionType;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.state.mapstate.MapStateChangedEvent;
 import org.deegree.igeo.state.mapstate.MeasureAreaState;
 import org.deegree.igeo.state.mapstate.MeasureDistanceState;
@@ -86,15 +85,6 @@ public class MeasureModule<T> extends DefaultModule<T> implements ChangeListener
     private MeasurePanel measurePanel;
 
     private DefaultMapModule<?> mapModule;
-
-    static {
-        ActionDescription ad1 = new ActionDescription( "measureArea", "sets application into 'measure area' state",
-                                                       null, "start measuring area", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription( "measureDistance",
-                                                       "sets application into 'measure distance' state", null,
-                                                       "start measuring distance", ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2 );
-    }
 
     @Override
     public void init( ModuleType moduleType, _ComponentPositionType componentPosition, ApplicationContainer<T> appCont,

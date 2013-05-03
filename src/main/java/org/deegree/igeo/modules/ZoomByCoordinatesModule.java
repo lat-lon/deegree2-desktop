@@ -43,14 +43,13 @@ import org.deegree.framework.log.LoggerFactory;
 import org.deegree.igeo.commands.model.ZoomCommand;
 import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.DialogFactory;
 import org.deegree.model.Identifier;
 import org.deegree.model.spatialschema.Envelope;
 import org.deegree.model.spatialschema.GeometryFactory;
 
 /**
- * Module for zooming active map(model) to a defined location (coordinate)  
+ * Module for zooming active map(model) to a defined location (coordinate)
  * 
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * 
@@ -62,15 +61,6 @@ import org.deegree.model.spatialschema.GeometryFactory;
 public class ZoomByCoordinatesModule<T> extends DefaultModule<T> {
 
     private static final ILogger LOG = LoggerFactory.getLogger( ZoomByCoordinatesModule.class );
-
-    static {
-        ActionDescription actionDescription = new ActionDescription(
-                                                                     "open",
-                                                                     "opens a dialog entering a coordinate and a map size to zoom to",
-                                                                     null, "zoom to defined coordinate",
-                                                                     ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( actionDescription );
-    }
 
     /**
      * opens the modules view

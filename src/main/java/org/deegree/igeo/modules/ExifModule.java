@@ -84,7 +84,6 @@ import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.mapmodel.Datasource;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.modules.DefaultMapModule.SelectedFeaturesVisitor;
 import org.deegree.igeo.views.DialogFactory;
 import org.deegree.model.Identifier;
@@ -104,7 +103,6 @@ import org.deegree.model.spatialschema.Point;
 /**
  * Module for to read data from exif header of georeferenced jpeg images
  * 
- * @author <a href="mailto:schmitz@lat-lon.de">Andreas Schmitz</a>
  * @author <a href="mailto:schmitz@lat-lon.de">Andreas Schmitz</a>
  * @author last edited by: $Author$
  * 
@@ -138,18 +136,6 @@ public class ExifModule<T> extends DefaultModule<T> {
                               FeatureFactory.createSimplePropertyType( imageLocation, Types.VARCHAR, 1, 1 ) };
 
         featureType = FeatureFactory.createFeatureType( new QualifiedName( "app", "geoimage", APPNS ), false, pts );
-    }
-
-    static {
-        ActionDescription ad1 = new ActionDescription(
-                                                       "addImages",
-                                                       "opens a dialog for adding coordinates read from exif header of an image as new feature",
-                                                       null, "add feature from exif header", ACTIONTYPE.PushButton,
-                                                       null, null );
-        ActionDescription ad2 = new ActionDescription( "linkImage",
-                                                       "links an image to an already existing point feature", null,
-                                                       "link image to feature", ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2 );
     }
 
     /**

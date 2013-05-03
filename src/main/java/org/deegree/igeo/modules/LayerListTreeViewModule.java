@@ -53,7 +53,6 @@ import org.deegree.igeo.mapmodel.LayerGroup;
 import org.deegree.igeo.mapmodel.MapModel;
 import org.deegree.igeo.mapmodel.MapModelEntry;
 import org.deegree.igeo.mapmodel.MapModelVisitor;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.DialogFactory;
 import org.deegree.igeo.views.swing.layerlist.LayerInfoFrame;
 import org.deegree.model.Identifier;
@@ -69,33 +68,6 @@ import org.deegree.model.Identifier;
 public class LayerListTreeViewModule<T> extends DefaultModule<T> {
 
     private static final ILogger LOG = LoggerFactory.getLogger( LayerListTreeViewModule.class );
-    static {
-        initCapabilities();
-    }
-
-    private static void initCapabilities() {
-        ActionDescription ad1 = new ActionDescription( "addLayerGroup", "adds a new layer group to map model", null,
-                                                       "adds a new layergroup", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription(
-                                                       "layerinfo",
-                                                       "opens a dialog showing informations about selected layer and enabling its manipulation",
-                                                       null, "open a dialog containing layer informations",
-                                                       ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad3 = new ActionDescription( "removeLayer",
-                                                       "removes selected layer or layer group from map model", null,
-                                                       "removes selected layer", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad4 = new ActionDescription( "rename", "renames selected layer or layer group", null,
-                                                       "renames selected layer or layer group", ACTIONTYPE.PushButton,
-                                                       null, null );
-        ActionDescription ad5 = new ActionDescription( "setVisibility",
-                                                       "sets selected layer or layer group visible or unvisible", null,
-                                                       "sets visibility of a layer or layer group",
-                                                       ACTIONTYPE.checkbox, null, null );
-        ActionDescription ad6 = new ActionDescription( "setEditing", "sets selected layer into editing mode", null,
-                                                       "sets selected layer into editing mode", ACTIONTYPE.radiobutton,
-                                                       null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2, ad3, ad4, ad5, ad6 );
-    }
 
     /**
      * event handler method. Moves a {@link MapModelEntry} to first position of layer list/tree

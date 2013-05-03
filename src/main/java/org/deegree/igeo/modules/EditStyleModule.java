@@ -48,7 +48,6 @@ import javax.swing.JFrame;
 
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.swing.style.EditFeatureStyleDialog;
 import org.deegree.igeo.views.swing.style.RuleDialog;
 
@@ -64,17 +63,6 @@ import org.deegree.igeo.views.swing.style.RuleDialog;
 public class EditStyleModule<T> extends DefaultModule<T> {
 
     private Layer currentLayer;
-
-    static {
-        ActionDescription ad1 = new ActionDescription( "editStyle",
-                                                       "opens a dialog for editing style of selected layer", null,
-                                                       "edit style", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription(
-                                                       "editFeatureStyle",
-                                                       "opens a dialog for editing properties assigned to a CSS parameter",
-                                                       null, "edit feature style", ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2 );
-    }
 
     /**
      * opens the rule dialog to edit the style of the selected layer

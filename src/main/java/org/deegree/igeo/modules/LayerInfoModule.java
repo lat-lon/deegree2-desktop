@@ -54,12 +54,11 @@ import org.deegree.igeo.dataadapter.FeatureAdapter;
 import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.LayerChangedEvent;
+import org.deegree.igeo.mapmodel.LayerChangedEvent.LAYER_CHANGE_TYPE;
 import org.deegree.igeo.mapmodel.MapModel;
 import org.deegree.igeo.mapmodel.MapModelChangedEvent;
-import org.deegree.igeo.mapmodel.MapModelCollection;
-import org.deegree.igeo.mapmodel.LayerChangedEvent.LAYER_CHANGE_TYPE;
 import org.deegree.igeo.mapmodel.MapModelChangedEvent.CHANGE_TYPE;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
+import org.deegree.igeo.mapmodel.MapModelCollection;
 import org.deegree.igeo.views.DialogFactory;
 import org.deegree.igeo.views.FeatureTable;
 import org.deegree.kernel.Command;
@@ -79,12 +78,6 @@ import org.deegree.model.feature.FeatureCollection;
  * 
  */
 public class LayerInfoModule<T> extends DefaultModule<T> implements ChangeListener, CommandProcessedListener {
-
-    static {
-        ActionDescription ad1 = new ActionDescription( "open", "opens a dialog showing a layers properties as a table",
-                                                       null, "open layerinfo dialog", ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1 );
-    }
 
     @Override
     public void init( ModuleType moduleType, _ComponentPositionType componentPosition, ApplicationContainer<T> appCont,
@@ -156,9 +149,8 @@ public class LayerInfoModule<T> extends DefaultModule<T> implements ChangeListen
             }
         } else {
             ( (FeatureTable) getViewForm() ).setFeatureCollection( layer, null );
-            DialogFactory.openWarningDialog( appContainer.getViewPlatform(), null, Messages.get( "$MD11398",
-                                                                                                 layer.getTitle() ),
-                                             Messages.get( "$MD11399" ) );
+            DialogFactory.openWarningDialog( appContainer.getViewPlatform(), null,
+                                             Messages.get( "$MD11398", layer.getTitle() ), Messages.get( "$MD11399" ) );
         }
     }
 

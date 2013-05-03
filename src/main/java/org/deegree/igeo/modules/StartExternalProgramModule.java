@@ -62,7 +62,6 @@ import org.deegree.framework.log.ILogger;
 import org.deegree.igeo.commands.model.AddFileLayerCommand;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.swing.util.GenericFileChooser;
 import org.deegree.kernel.Command;
 import org.deegree.kernel.CommandProcessor;
@@ -83,15 +82,6 @@ import org.deegree.model.feature.FeatureProperty;
 public class StartExternalProgramModule<T> extends DefaultModule<T> {
 
     static final ILogger LOG = getLogger( StartExternalProgramModule.class );
-
-    static {
-        ActionDescription ad = new ActionDescription(
-                                                      "startProgram",
-                                                      "starts an external program assigned to value type read from a defined property",
-                                                      null, "starts an external program", ACTIONTYPE.PushButton, null,
-                                                      null );
-        moduleCapabilities = new ModuleCapabilities( ad );
-    }
 
     /**
      * 

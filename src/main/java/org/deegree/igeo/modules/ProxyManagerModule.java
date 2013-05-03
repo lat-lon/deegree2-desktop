@@ -38,7 +38,6 @@ package org.deegree.igeo.modules;
 import org.deegree.framework.log.ILogger;
 import org.deegree.framework.log.LoggerFactory;
 import org.deegree.framework.util.StringTools;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 
 /**
  * Module for managing proxy information for establishing network connections
@@ -51,13 +50,6 @@ import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 public class ProxyManagerModule<T> extends DefaultModule<T> {
 
     private static final ILogger LOG = LoggerFactory.getLogger( ProxyManagerModule.class );
-
-    static {
-        ActionDescription actionDescription = new ActionDescription( "open", "opens a dialog managing proxy settings",
-                                                                     null, "manage proxy settings",
-                                                                     ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( actionDescription );
-    }
 
     /**
      * event handler method

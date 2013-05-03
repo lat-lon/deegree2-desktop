@@ -65,7 +65,6 @@ import org.deegree.igeo.dataadapter.FeatureAdapter;
 import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.state.StateException;
 import org.deegree.igeo.state.mapstate.EditState;
 import org.deegree.igeo.state.mapstate.EditState.DrawPolygonHoleState;
@@ -93,6 +92,7 @@ import org.deegree.model.spatialschema.Geometry;
  * that are important for digitizing actions.
  * 
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
+ * 
  * @author last edited by: $Author$
  * 
  * @version. $Revision$, $Date$
@@ -132,15 +132,6 @@ public class DigitizerModule<T> extends DefaultModule<T> {
     // list of digitized/edited/selected points. If e.g. a multi surface or a surface
     // with holes has been edited, each ring will be available as a list of points
     private List<Geometry> geometries = new ArrayList<Geometry>();
-
-    static {
-        ActionDescription actionDescription = new ActionDescription(
-                                                                     "open",
-                                                                     "opens a dialog enabling selection of digitizing functions",
-                                                                     null, "open digitize dialog",
-                                                                     ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( actionDescription );
-    }
 
     @SuppressWarnings("unchecked")
     @Override

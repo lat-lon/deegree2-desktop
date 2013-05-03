@@ -51,10 +51,9 @@ import org.deegree.igeo.commands.model.AddFileLayerCommand;
 import org.deegree.igeo.desktop.IGeoDesktop;
 import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.swing.util.GenericFileChooser;
-import org.deegree.igeo.views.swing.util.IGeoFileFilter;
 import org.deegree.igeo.views.swing.util.GenericFileChooser.FILECHOOSERTYPE;
+import org.deegree.igeo.views.swing.util.IGeoFileFilter;
 import org.deegree.igeo.views.swing.util.IGeoFileFilter.FILETYPE;
 import org.deegree.kernel.CommandProcessedEvent;
 import org.deegree.kernel.CommandProcessedListener;
@@ -73,18 +72,6 @@ import org.deegree.kernel.ProcessMonitorFactory;
 public class AddLayerModule<T> extends DefaultModule<T> {
 
     private static final ILogger LOG = LoggerFactory.getLogger( AddLayerModule.class );
-
-    static {
-        ActionDescription ad1 = new ActionDescription(
-                                                       "addLayer",
-                                                       "opens a dialog for adding a new layer from one of all supported datasources",
-                                                       null, "add a new layer", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription(
-                                                       "openFile",
-                                                       "opens a file dialog for selecting a geo data file to add as new layer",
-                                                       null, "add file as new layer", ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2 );
-    }
 
     /**
      * adds a new layer to the map model
@@ -109,8 +96,7 @@ public class AddLayerModule<T> extends DefaultModule<T> {
         File file = null;
         if ( "Application".equalsIgnoreCase( appContainer.getViewPlatform() ) ) {
             Preferences prefs = Preferences.userNodeForPackage( AddLayerModule.class );
-            List<IGeoFileFilter> ff = IGeoFileFilter.createForwellKnownFormats(
-                                                                                (ApplicationContainer<Container>) appContainer,
+            List<IGeoFileFilter> ff = IGeoFileFilter.createForwellKnownFormats( (ApplicationContainer<Container>) appContainer,
                                                                                 FILETYPE.any );
             file = GenericFileChooser.showOpenDialog( FILECHOOSERTYPE.geoDataFile, appContainer,
                                                       ( (IGeoDesktop) appContainer ).getMainWndow(), prefs,
@@ -125,8 +111,7 @@ public class AddLayerModule<T> extends DefaultModule<T> {
             AddFileLayerCommand command = new AddFileLayerCommand( mapModel, file, null, null, null,
                                                                    mapModel.getCoordinateSystem().getPrefixedName() );
 
-            final ProcessMonitor pm = ProcessMonitorFactory.createDialogProcessMonitor(
-                                                                                        appContainer.getViewPlatform(),
+            final ProcessMonitor pm = ProcessMonitorFactory.createDialogProcessMonitor( appContainer.getViewPlatform(),
                                                                                         Messages.get( "$MD11264" ),
                                                                                         Messages.get( "$MD11265", file ),
                                                                                         0, -1, command );

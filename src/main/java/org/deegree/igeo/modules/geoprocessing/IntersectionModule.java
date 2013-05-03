@@ -42,10 +42,7 @@ import org.deegree.igeo.commands.UnselectFeaturesCommand;
 import org.deegree.igeo.commands.geoprocessing.LayerIntersectionCommand;
 import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription;
 import org.deegree.igeo.modules.DefaultModule;
-import org.deegree.igeo.modules.ModuleCapabilities;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.swing.geoprocessing.IntersectionModel;
 import org.deegree.kernel.Command;
 import org.deegree.kernel.CommandList;
@@ -63,15 +60,6 @@ import org.deegree.kernel.ProcessMonitorFactory;
  * 
  */
 public class IntersectionModule<T> extends DefaultModule<T> {
-
-    static {
-        ActionDescription ad1 = new ActionDescription(
-                                                       "open",
-                                                       "opens a dialog for defining parameters and starting intersection operation",
-                                                       null, "open intersection dialog", ACTIONTYPE.PushButton, null,
-                                                       null );
-        moduleCapabilities = new ModuleCapabilities( ad1 );
-    }
 
     /**
      * opens a dialog for making settings to calculate intersection

@@ -47,11 +47,8 @@ import org.deegree.igeo.config.ModuleType;
 import org.deegree.igeo.config._ComponentPositionType;
 import org.deegree.igeo.desktop.IGeoDesktop;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription;
 import org.deegree.igeo.modules.DefaultModule;
 import org.deegree.igeo.modules.IModule;
-import org.deegree.igeo.modules.ModuleCapabilities;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.swing.bookmark.NewBookmarkDialog;
 import org.deegree.model.Identifier;
 import org.deegree.model.spatialschema.Envelope;
@@ -69,14 +66,6 @@ public class BookmarkModule<T> extends DefaultModule<T> {
     private static final ILogger LOG = LoggerFactory.getLogger( BookmarkModule.class );
 
     public static final String BOOKMARK = BookmarkModule.class.getName();
-
-    static {
-        ActionDescription ad1 = new ActionDescription( "open", "opens a dialog for selecting a bookmark", null,
-                                                       "open bookmark dialog", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription( "open", "opens a dialog for adding a new bookmark", null,
-                                                       "open bookmark dialog", ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2 );
-    }
 
     /**
      * action method for adding a book mark

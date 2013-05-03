@@ -62,13 +62,12 @@ import javax.swing.JFrame;
 
 import org.deegree.framework.log.ILogger;
 import org.deegree.igeo.desktop.IGeoDesktop;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.views.swing.print.DirectPrinter;
 import org.deegree.igeo.views.swing.print.EditAvailableTemplatesPanel;
 import org.deegree.igeo.views.swing.print.PrintWizard;
 import org.deegree.igeo.views.swing.print.SelectTemplatePanel;
-import org.deegree.igeo.views.swing.print.VectorPrintDialog;
 import org.deegree.igeo.views.swing.print.SelectTemplatePanel.Template;
+import org.deegree.igeo.views.swing.print.VectorPrintDialog;
 import org.deegree.igeo.views.swing.util.panels.PanelDialog;
 
 /**
@@ -88,26 +87,6 @@ import org.deegree.igeo.views.swing.util.panels.PanelDialog;
 public class PrintModule<T> extends DefaultModule<T> {
 
     private static final ILogger LOG = getLogger( PrintModule.class );
-
-    static {
-        ActionDescription ad1 = new ActionDescription( "print", "starts wizzard for printing current map", null,
-                                                       "starts wizzard for printing current map",
-                                                       ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription( "editSettings",
-                                                       "opens dialog for editing settings of print module", null,
-                                                       "editing settings of print module", ACTIONTYPE.PushButton, null,
-                                                       null );
-        ActionDescription ad3 = new ActionDescription(
-                                                       "editTemplates",
-                                                       "starts iReport for adding new or editing existing print templates",
-                                                       null, "start iReport", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad4 = new ActionDescription( "directPrint",
-                                                       "starts printing current map onto an available print divice",
-                                                       null,
-                                                       "starts printing current map onto an available print divice",
-                                                       ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2, ad3, ad4 );
-    }
 
     /**
      * @return a list of templates defined in the configuration

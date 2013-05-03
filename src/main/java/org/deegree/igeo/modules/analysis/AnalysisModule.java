@@ -66,11 +66,8 @@ import org.deegree.igeo.desktop.IGeoDesktop;
 import org.deegree.igeo.mapmodel.Datasource;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription;
-import org.deegree.igeo.modules.DefaultModule;
-import org.deegree.igeo.modules.ModuleCapabilities;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.modules.DefaultMapModule.SelectedFeaturesVisitor;
+import org.deegree.igeo.modules.DefaultModule;
 import org.deegree.igeo.modules.analysis.AnalysisFunction.AnalysisFunctionException;
 import org.deegree.igeo.views.DialogFactory;
 import org.deegree.igeo.views.swing.GeometryStatisticsPanel;
@@ -97,19 +94,6 @@ import org.deegree.model.spatialschema.Point;
 public class AnalysisModule<T> extends DefaultModule<T> {
 
     private static final ILogger LOG = getLogger( AnalysisModule.class );
-
-    static {
-        ActionDescription ad1 = new ActionDescription(
-                                                       "addOrUpdateAreaAndLength",
-                                                       "opens a dialog that enables adding geometry length/area as properties to a feature",
-                                                       null, "open dialog for adding geometry length/area",
-                                                       ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription( "geometryStatistics",
-                                                       "calculates statistics for each selected geometry", null,
-                                                       "calculates statistics for each selected geometry",
-                                                       ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2 );
-    }
 
     /**
      * 

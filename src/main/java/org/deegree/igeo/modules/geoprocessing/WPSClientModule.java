@@ -46,12 +46,9 @@ import org.deegree.igeo.dataadapter.DataAccessAdapter;
 import org.deegree.igeo.dataadapter.FeatureAdapter;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription;
-import org.deegree.igeo.modules.DefaultModule;
-import org.deegree.igeo.modules.ModuleCapabilities;
-import org.deegree.igeo.modules.ModuleException;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.modules.DefaultMapModule.SelectedFeaturesVisitor;
+import org.deegree.igeo.modules.DefaultModule;
+import org.deegree.igeo.modules.ModuleException;
 import org.deegree.kernel.Command;
 import org.deegree.model.Identifier;
 import org.deegree.model.feature.FeatureCollection;
@@ -67,14 +64,6 @@ import org.deegree.model.feature.FeatureCollection;
  * 
  */
 public class WPSClientModule<T> extends DefaultModule<T> {
-
-    static {
-        ActionDescription ad1 = new ActionDescription(
-                                                       "open",
-                                                       "opens a dialog selecting a WPS process that will be invoked from iGeoDesktop",
-                                                       null, "open WPS dialog", ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1 );
-    }
 
     /**
      * opens a dialog for selecting a WPS dialog

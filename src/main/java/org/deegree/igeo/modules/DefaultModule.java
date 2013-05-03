@@ -38,7 +38,6 @@
 package org.deegree.igeo.modules;
 
 import java.awt.Component;
-
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
@@ -69,8 +68,8 @@ import org.deegree.igeo.config.ToolbarEntryType;
 import org.deegree.igeo.config.Util;
 import org.deegree.igeo.config.ViewFormType;
 import org.deegree.igeo.config._AbstractViewFormType;
-import org.deegree.igeo.config._ComponentPositionType;
 import org.deegree.igeo.config._AbstractViewFormType.ContainerClass;
+import org.deegree.igeo.config._ComponentPositionType;
 import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.views.ComponentPosition;
 import org.deegree.igeo.views.ComponentState;
@@ -84,8 +83,8 @@ import org.deegree.model.Identifier;
  * The <code>DefaultModule</code> is the representation of a module configured in the configurationfile of the project
  * without special requirements (for example availableActions).
  * 
- * 
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
+ * 
  * @author last edited by: $Author$
  * 
  * @version. $Revision$, $Date$
@@ -118,8 +117,6 @@ public class DefaultModule<T> implements IModule<T> {
 
     protected T guiContainer;
 
-    protected static ModuleCapabilities moduleCapabilities;
-
     /*
      * (non-Javadoc)
      * 
@@ -148,14 +145,6 @@ public class DefaultModule<T> implements IModule<T> {
 
         createIView();
 
-    }
-
-    /**
-     * 
-     * @return capabilities of a module
-     */
-    public static ModuleCapabilities getModuleCapabilities() {
-        return moduleCapabilities;
     }
 
     /*
@@ -211,7 +200,7 @@ public class DefaultModule<T> implements IModule<T> {
     public void createIView() {
         String className = null;
         try {
-            if ( !this.componentStateAdapter.isClosed() && this.view == null ) {               
+            if ( !this.componentStateAdapter.isClosed() && this.view == null ) {
                 String viewPlatform = this.appContainer.getViewPlatform();
                 className = getViewClassName( moduleType.getViewForm(), viewPlatform ).trim();
                 Class<?> c = Class.forName( className );
@@ -222,7 +211,7 @@ public class DefaultModule<T> implements IModule<T> {
             }
         } catch ( Exception e ) {
             this.view = null;
-            this.componentStateAdapter.setClosed( true ); 
+            this.componentStateAdapter.setClosed( true );
             LOG.logError( e.getMessage(), e );
             throw new RuntimeException( e );
         }
@@ -332,7 +321,6 @@ public class DefaultModule<T> implements IModule<T> {
         return componentPositionAdapter;
     }
 
-   
     /*
      * (non-Javadoc)
      * 

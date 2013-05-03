@@ -72,7 +72,6 @@ import org.deegree.igeo.i18n.Messages;
 import org.deegree.igeo.mapmodel.Datasource;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 import org.deegree.igeo.modules.DefaultMapModule.SelectedFeaturesVisitor;
 import org.deegree.igeo.settings.ClipboardOptions;
 import org.deegree.igeo.views.DialogFactory;
@@ -95,6 +94,7 @@ import org.xml.sax.SAXException;
  * Module for handling copy and paste of features from one layer to another
  * 
  * @author <a href="mailto:schmitz@lat-lon.de">Andreas Schmitz</a>
+ * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  * @author last edited by: $Author$
  * 
  * @version $Revision$, $Date$
@@ -103,22 +103,6 @@ import org.xml.sax.SAXException;
 public class CopyPasteModule<T> extends DefaultModule<T> {
 
     private static final ILogger LOG = getLogger( CopyPasteModule.class );
-
-    static {
-        ActionDescription ad1 = new ActionDescription( "clearClipboard", "removes all content from clip board", null,
-                                                       "clear clip board", ACTIONTYPE.PushButton, null, null );
-        ActionDescription ad2 = new ActionDescription( "copy",
-                                                       "copies selected features as GML3 objects into clip board",
-                                                       null, "copies selected features", ACTIONTYPE.PushButton, null,
-                                                       null );
-        ActionDescription ad3 = new ActionDescription( "copyAsWKT", "copies selected features as WKT into clip board",
-                                                       null, "copies selected features as WKT", ACTIONTYPE.PushButton,
-                                                       null, null );
-        ActionDescription ad4 = new ActionDescription( "paste", "pastes features from clip board into selected layer",
-                                                       null, "pastes features from clip board", ACTIONTYPE.PushButton,
-                                                       null, null );
-        moduleCapabilities = new ModuleCapabilities( ad1, ad2, ad3, ad4 );
-    }
 
     /**
      * 
@@ -137,8 +121,8 @@ public class CopyPasteModule<T> extends DefaultModule<T> {
                     col.add( visitor.col.getFeature( i ).cloneDeep() );
                 }
 
-                String name = DialogFactory.openInputDialog( appContainer.getViewPlatform(), getViewForm(), get( "$MD10558" ),
-                                               get( "$MD10559" ) );
+                String name = DialogFactory.openInputDialog( appContainer.getViewPlatform(), getViewForm(),
+                                                             get( "$MD10558" ), get( "$MD10559" ) );
                 if ( name == null ) {
                     return;
                 }
@@ -246,8 +230,9 @@ public class CopyPasteModule<T> extends DefaultModule<T> {
                         }
                     } else {
                         if ( ( asked && yes )
-                             || ( !asked && DialogFactory.openConfirmDialogYESNO( appContainer.getViewPlatform(), getViewForm(),
-                                                                    get( "$MD10555" ), get( "$DI10019" ) ) ) ) {
+                             || ( !asked && DialogFactory.openConfirmDialogYESNO( appContainer.getViewPlatform(),
+                                                                                  getViewForm(), get( "$MD10555" ),
+                                                                                  get( "$DI10019" ) ) ) ) {
                             asked = true;
                             yes = true;
                             InsertFeatureCommand newFeature = insertFeature( l, f.getDefaultGeometryPropertyValue() );

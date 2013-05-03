@@ -35,7 +35,6 @@
  ----------------------------------------------------------------------------*/
 package org.deegree.igeo.modules;
 
-import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
 
 /**
  * Module for accessing available information for a collection of map models
@@ -48,16 +47,6 @@ import org.deegree.igeo.modules.ActionDescription.ACTIONTYPE;
  * @version $Revision$, $Date$
  */
 public class MapModelCollectionInfoModule<T> extends DefaultModule<T> {
-
-    static {
-        ActionDescription actionDescription = new ActionDescription(
-                                                                     "open",
-                                                                     "opens a dialog for getting and setting map model collection (project) informations",
-                                                                     null,
-                                                                     "map model collection (project) information",
-                                                                     ACTIONTYPE.PushButton, null, null );
-        moduleCapabilities = new ModuleCapabilities( actionDescription );
-    }
 
     /**
      * event handler method
