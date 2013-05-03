@@ -61,11 +61,11 @@ public class FeatureLayer extends org.deegree.graphics.FeatureLayer {
 
     private static final ILogger LOG = LoggerFactory.getLogger( FeatureLayer.class );
 
-    private FeatureCollection fc; 
-    
+    private FeatureCollection fc;
+
     private String name;
-    
-    private Identifier  id ;
+
+    private Identifier id;
 
     /**
      * 
@@ -102,7 +102,7 @@ public class FeatureLayer extends org.deegree.graphics.FeatureLayer {
     public String getName() {
         return name;
     }
-    
+
     /**
      * 
      * @return {@link QualifiedName} of the wrapped {@link FeatureAdapter}
@@ -125,7 +125,7 @@ public class FeatureLayer extends org.deegree.graphics.FeatureLayer {
      * @return a feature
      */
     public Feature getFeature( int index ) {
-               
+
         return fc.getFeature( index );
     }
 

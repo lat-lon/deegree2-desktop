@@ -42,7 +42,7 @@ import org.deegree.model.spatialschema.Point;
 /**
  * TODO add class documentation here
  * 
- * @author <a href="mailto:name@deegree.org">Andreas Poth</a>
+ * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * @author last edited by: $Author$
  * 
  * @version $Revision$, $Date$

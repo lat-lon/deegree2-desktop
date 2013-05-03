@@ -42,7 +42,7 @@ import org.deegree.datatypes.QualifiedName;
 /**
  * TODO add class documentation here
  * 
- * @author <a href="mailto:name@deegree.org">Andreas Poth</a>
+ * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * @author last edited by: $Author$
  * 
  * @version $Revision$, $Date$
@@ -56,7 +56,7 @@ public class HierarchyNode {
     private boolean freeSearch;
 
     private HierarchyNode childNode;
-    
+
     private Map<String, String> properties;
 
     /**
@@ -108,11 +108,11 @@ public class HierarchyNode {
     public boolean supportFreeSearch() {
         return freeSearch;
     }
-    
+
     /**
      * 
      * @param name
-     * @return property names assigned to a well known gazetteer properties. 
+     * @return property names assigned to a well known gazetteer properties.
      */
     public Map<String, String> getProperties() {
         return properties;

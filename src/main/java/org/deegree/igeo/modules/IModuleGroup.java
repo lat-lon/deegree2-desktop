@@ -40,8 +40,8 @@ package org.deegree.igeo.modules;
 import java.util.List;
 
 /**
- * Collection interface for grouping Modules. Because each ModuleGroup is a Module itself
- * ModuleGroups can contain other ModuleGroups.
+ * Collection interface for grouping Modules. Because each ModuleGroup is a Module itself ModuleGroups can contain other
+ * ModuleGroups.
  * 
  * @author <a href="mailto:buesching@lat-lon.de">Lyn Buesching</a>
  * @author last edited by: $Author$

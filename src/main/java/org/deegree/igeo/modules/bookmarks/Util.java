@@ -32,7 +32,7 @@
  http://www.geographie.uni-bonn.de/deegree/
 
  e-mail: info@deegree.org
-----------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------*/
 package org.deegree.igeo.modules.bookmarks;
 
 import java.io.File;
@@ -56,20 +56,21 @@ import org.deegree.model.spatialschema.GeometryFactory;
 /**
  * TODO add class documentation here
  * 
- * @author <a href="mailto:name@deegree.org">Andreas Poth</a>
+ * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * @author last edited by: $Author$
  * 
  * @version $Revision$, $Date$
  */
 public class Util {
-    
+
     /**
      * 
      * @param bookmarks
      * @param file
      * @throws Exception
      */
-    public static void saveBookmarks(List<BookmarkEntry> bookmarks, File file) throws Exception {
+    public static void saveBookmarks( List<BookmarkEntry> bookmarks, File file )
+                            throws Exception {
         BookmarkList bml = new BookmarkList();
         List<BookmarkType> list = bml.getBookmark();
         for ( BookmarkEntry bookmarkEntry : bookmarks ) {
@@ -95,14 +96,15 @@ public class Util {
         fos.flush();
         fos.close();
     }
-    
+
     /**
      * 
      * @param file
      * @return
      * @throws Exception
      */
-    public static  List<BookmarkEntry> loadBookmarks(File file) throws Exception {
+    public static List<BookmarkEntry> loadBookmarks( File file )
+                            throws Exception {
         List<BookmarkEntry> bookmarks = new ArrayList<BookmarkEntry>();
         if ( file.exists() ) {
             try {
@@ -133,7 +135,7 @@ public class Util {
         }
         return bookmarks;
     }
-    
+
     /**
      * 
      * @param envelope

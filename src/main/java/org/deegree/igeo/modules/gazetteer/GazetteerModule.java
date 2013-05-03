@@ -32,7 +32,7 @@
  http://www.geographie.uni-bonn.de/deegree/
 
  e-mail: info@deegree.org
-----------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------*/
 package org.deegree.igeo.modules.gazetteer;
 
 import java.io.StringReader;
@@ -53,42 +53,42 @@ import org.deegree.igeo.modules.IModule;
 /**
  * TODO add class documentation here
  * 
- * @author <a href="mailto:name@deegree.org">Andreas Poth</a>
+ * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * @author last edited by: $Author$
  * 
  * @version $Revision$, $Date$
  */
-public class GazetteerModule<T> extends DefaultModule<T>{
-    
+public class GazetteerModule<T> extends DefaultModule<T> {
+
     private static final ILogger LOG = LoggerFactory.getLogger( GazetteerModule.class );
-    
+
     private List<Hierarchy> hierarchies;
-   
+
     @Override
     public void init( ModuleType moduleType, _ComponentPositionType componentPosition, ApplicationContainer<T> appCont,
                       IModule<T> parent, Map<String, String> initParams ) {
         // TODO Auto-generated method stub
         super.init( moduleType, componentPosition, appCont, parent, initParams );
         Iterator<String> iterator = initParams.keySet().iterator();
-        hierarchies = new ArrayList<Hierarchy>(initParams.size());
+        hierarchies = new ArrayList<Hierarchy>( initParams.size() );
         while ( iterator.hasNext() ) {
             String key = (String) iterator.next();
             String value = initParams.get( key ).trim();
             // remove CDATA
-            if ( value.startsWith( "<![CDATA[" )) { 
-            value = value.substring( 9, value.length()-3 ).trim();
+            if ( value.startsWith( "<![CDATA[" ) ) {
+                value = value.substring( 9, value.length() - 3 ).trim();
             }
             XMLFragment xml = new XMLFragment();
-            try {                
+            try {
                 xml.load( new StringReader( value ), XMLFragment.DEFAULT_URL );
                 hierarchies.add( new Hierarchy( xml ) );
             } catch ( Exception e ) {
                 LOG.logError( e.getMessage(), e );
                 LOG.logError( value );
             }
-        }        
+        }
     }
-    
+
     /**
      * event handler method for opening gazetteer dialog/window
      */
@@ -98,7 +98,7 @@ public class GazetteerModule<T> extends DefaultModule<T>{
             createIView();
         }
     }
-    
+
     /**
      * 
      * @return list of {@link Hierarchy}s known by a {@link GazetteerModule}
@@ -106,5 +106,5 @@ public class GazetteerModule<T> extends DefaultModule<T>{
     public List<Hierarchy> getHierarchyList() {
         return hierarchies;
     }
-    
+
 }

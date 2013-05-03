@@ -41,10 +41,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Default implementation of {@link IModuleGroup} 
- * 
+ * Default implementation of {@link IModuleGroup}
  * 
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
+ * 
  * @author last edited by: $Author$
  * 
  * @version. $Revision$, $Date$

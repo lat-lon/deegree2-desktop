@@ -83,7 +83,8 @@ import org.deegree.model.spatialschema.Surface;
 /**
  * Class containing methods for handling actions triggerd by {@link DigitizerModule}
  * 
- * @author <a href="mailto:name@deegree.org">Andreas Poth</a>
+ * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
+ * 
  * @author last edited by: $Author$
  * 
  * @version $Revision$, $Date$
@@ -168,7 +169,6 @@ public class DigitizeActionHandler {
             Feature feature = ( (FeatureAdapter) dataAccess.get( 0 ) ).getFeatureCollection().getFeature( id );
             fc.add( feature );
         }
-        
 
         DefaultMapModule<?> mapModule = owner.getAssignedMapModule();
         ToolState ts = mapModule.getMapTool().getState();
@@ -187,7 +187,7 @@ public class DigitizeActionHandler {
                                              Messages.getMessage( Locale.getDefault(), "$MD10290" ) );
         }
         // reset previous state
-        mapModule.getMapTool().setState( ts );        
+        mapModule.getMapTool().setState( ts );
     }
 
     /**
@@ -266,7 +266,7 @@ public class DigitizeActionHandler {
      * 
      */
     protected void ungroupMultiPolygon() {
-        ungroupFeatures( );
+        ungroupFeatures();
     }
 
     /**
@@ -274,7 +274,7 @@ public class DigitizeActionHandler {
      * 
      */
     protected void ungroupMultiCurve() {
-        ungroupFeatures( );
+        ungroupFeatures();
     }
 
     /**
@@ -282,7 +282,7 @@ public class DigitizeActionHandler {
      * 
      */
     protected void ungroupMultiPoint() {
-        ungroupFeatures( );
+        ungroupFeatures();
     }
 
     private void ungroupFeatures() {
