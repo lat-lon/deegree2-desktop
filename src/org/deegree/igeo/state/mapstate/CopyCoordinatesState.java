@@ -38,14 +38,14 @@
 package org.deegree.igeo.state.mapstate;
 
 import static java.awt.Toolkit.getDefaultToolkit;
-import static org.deegree.model.spatialschema.GeometryFactory.createPoint;
+import static org.deegree.framework.utils.MapTools.calculateMouseCoord;
 
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseEvent;
 
-import org.deegree.graphics.transformation.GeoTransform;
 import org.deegree.igeo.ApplicationContainer;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
@@ -74,11 +74,6 @@ public class CopyCoordinatesState extends MapState {
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.deegree.client.presenter.state.mapstate.ToolState#createDrawingPane(java.lang.String, java.awt.Graphics)
-     */
     @Override
     public DrawingPane createDrawingPane( String platform, Graphics g ) {
         return null;
@@ -100,9 +95,10 @@ public class CopyCoordinatesState extends MapState {
 
     private Point getCoordinatesFromMouseEvent( MouseEvent e ) {
         MapModel mm = appContainer.getMapModel( null );
-        GeoTransform trans = mm.getToTargetDeviceTransformation();
-        Point pt = createPoint( trans.getSourceX( e.getX() ), trans.getSourceY( e.getY() ), mm.getCoordinateSystem() );
-        return pt;
+        Component component = e.getComponent();
+        double componentWidth = component.getWidth();
+        double componentHeight = component.getHeight();
+        return calculateMouseCoord( mm, e.getX(), e.getY(), componentWidth, componentHeight );
     }
 
 }
