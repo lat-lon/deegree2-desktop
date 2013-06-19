@@ -46,8 +46,10 @@ import javax.swing.table.DefaultTableModel;
 import org.deegree.datatypes.QualifiedName;
 import org.deegree.datatypes.Types;
 import org.deegree.igeo.i18n.Messages;
+import org.deegree.model.feature.Feature;
 import org.deegree.model.feature.FeatureCollection;
 import org.deegree.model.feature.FeatureFactory;
+import org.deegree.model.feature.FeatureProperty;
 import org.deegree.model.feature.schema.FeatureType;
 import org.deegree.model.feature.schema.PropertyType;
 
@@ -129,11 +131,14 @@ class WMSFeatureTableModel extends DefaultTableModel {
             if ( columnIndex == 0 ) {
                 return qn.getLocalName();
             } else {
-                return fc.getFeature( 0 ).getProperties( qn )[0].getValue( "" );
+                Feature feature = fc.getFeature( 0 );
+                FeatureProperty[] featureProperties = feature.getProperties( qn );
+                if ( featureProperties != null && featureProperties.length > 0 ) {
+                    return featureProperties[0].getValue( "" );
+                }
             }
-        } else {
-            return null;
         }
+        return null;
     }
 
     @Override
