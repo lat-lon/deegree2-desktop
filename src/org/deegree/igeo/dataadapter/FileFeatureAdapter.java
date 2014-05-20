@@ -38,18 +38,16 @@
 
 package org.deegree.igeo.dataadapter;
 
-import static org.deegree.crs.coordinatesystems.GeographicCRS.WGS84;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.UUID;
 
+import org.deegree.crs.coordinatesystems.GeographicCRS;
 import org.deegree.framework.log.ILogger;
 import org.deegree.framework.log.LoggerFactory;
 import org.deegree.framework.util.GeometryUtils;
@@ -61,6 +59,7 @@ import org.deegree.igeo.mapmodel.FileDatasource;
 import org.deegree.igeo.mapmodel.Layer;
 import org.deegree.igeo.mapmodel.MapModel;
 import org.deegree.igeo.views.DialogFactory;
+import org.deegree.igeo.views.swing.util.GenericFileChooser;
 import org.deegree.igeo.views.swing.util.GenericFileChooser.FILECHOOSERTYPE;
 import org.deegree.io.gpx.GPXReader;
 import org.deegree.io.shpapi.ShapeFile;
@@ -203,22 +202,34 @@ public class FileFeatureAdapter extends FeatureAdapter {
     }
 
     private void loadGPXFile() {
+        File file = ( (FileDatasource) this.datasource ).getFile();
+        file = getAbsoluteFilePath( file );
+        this.datasource.setNativeCoordinateSystem( CRSFactory.create( GeographicCRS.WGS84 ) );
+
+        FileSystemAccessFactory fsaf = FileSystemAccessFactory.getInstance( this.mapModel.getApplicationContainer() );
+        InputStream is = null;
         try {
-            File file = ( (FileDatasource) datasource ).getFile();
-            file = getAbsoluteFilePath( file );
-            datasource.setNativeCoordinateSystem( CRSFactory.create( WGS84 ) );
-            FileInputStream fis = new FileInputStream( file );
-            FeatureCollection featureCollection = GPXReader.read( fis );
-            featureCollection.setEnvelopesUpdated();
-            featureCollection = transform( featureCollection );
-            try {
-                datasource.setExtent( featureCollection.getBoundedBy() );
-            } catch ( GeometryException e ) {
-                LOG.logError( "Unknown error", e );
-            }
-            featureCollections.put( datasource.getName(), featureCollection );
-        } catch ( FileNotFoundException e ) {
+            FileSystemAccess fsa = fsaf.getFileSystemAccess( GenericFileChooser.FILECHOOSERTYPE.geoDataFile );
+            is = fsa.getFileURL( file.getAbsolutePath() ).openStream();
+        } catch ( Exception e ) {
+            LOG.logError( e.getMessage(), e );
+            throw new DataAccessException(
+                                           Messages.getMessage( Locale.getDefault(), "$DG10070",
+                                                                new Object[] { file.getAbsolutePath(), e.getMessage() } ) );
         }
+
+        FeatureCollection featureCollection = GPXReader.read( is );
+        featureCollection.setEnvelopesUpdated();
+        featureCollection = transform( featureCollection );
+        try {
+            if ( featureCollection.size() > 0 )
+                this.datasource.setExtent( featureCollection.getBoundedBy() );
+            else
+                this.datasource.setExtent( this.mapModel.getEnvelope() );
+        } catch ( GeometryException e ) {
+            LOG.logError( "Unknown error", e );
+        }
+        this.featureCollections.put( this.datasource.getName(), featureCollection );
     }
 
     private void loadGMLFile() {
